@@ -25,5 +25,4 @@ const AuthWrapper: FunctionComponent<AuthWrapperProps> = ({ children }) => {
 
     return <>{user && children}</>;
 };
-export const uname = auth.currentUser?.displayName;
 export default AuthWrapper;
