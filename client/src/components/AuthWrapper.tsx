@@ -1,28 +1,19 @@
-import React, { useEffect, useState, ReactNode, FunctionComponent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import React, { useEffect, useState } from 'react'
+import { Outlet, Navigate } from 'react-router-dom';
 import { auth } from '../config/firebaseConfig';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
-type ChildrenFunction = (username: string) => ReactNode;
 
-interface AuthWrapperProps {
-    children: ReactNode | ChildrenFunction;
-}
-
-const AuthWrapper: FunctionComponent<AuthWrapperProps> = ({ children }) => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
+function AuthWrapper() {
+    const [loggedIn, setLoggedIn] = useState(false);
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (authUser: User | null) => {
-            if (!authUser) {
-                navigate('/login');
-            }
-            setUser(authUser);
+        const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
+            setLoggedIn(!user);
         });
 
         return () => unsubscribe();
-    }, [navigate]);
+    }, []);
+    return loggedIn ? <Outlet /> : <Navigate to="/login" />;
+}
 
-    return <>{user && children}</>;
-};
-export default AuthWrapper;
+export default AuthWrapper

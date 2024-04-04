@@ -10,8 +10,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<AuthWrapper>{<Home />}</AuthWrapper>} />
         <Route path="/login" element={<Login />} />
+        <Route element={<AuthWrapper />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
