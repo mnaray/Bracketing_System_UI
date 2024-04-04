@@ -1,12 +1,13 @@
+import { FieldValue } from "firebase/firestore";
 import IRound from "./IRound";
 
 export default interface IBracket {
   id: string;
   title: string;
-  createdAt: number;
-  editedAt: number;
+  createdAt: FieldValue;
+  editedAt: FieldValue;
   ownerName: string; // username
   started: boolean;
-  startedAt: number;
+  startedAt: FieldValue | undefined;
   rounds: IRound[];
 }

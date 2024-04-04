@@ -1,3 +1,4 @@
+import { FieldValue } from "firebase/firestore";
 import ICompetitor from "./ICompetitor";
 
 export default interface IMatch {
@@ -6,5 +7,6 @@ export default interface IMatch {
   competitor2: ICompetitor;
   winner: ICompetitor | undefined;
   started: boolean;
+  startedAt: FieldValue | undefined;
   nextMatch: string | undefined;
 }
