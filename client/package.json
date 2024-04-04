@@ -10,7 +10,6 @@
     "@types/node": "^16.18.89",
     "@types/react": "^18.2.65",
     "@types/react-dom": "^18.2.22",
-    "dotenv": "^16.4.5",
     "firebase": "^10.10.0",
     "firebaseui": "^6.1.0",
     "react": "^18.2.0",
