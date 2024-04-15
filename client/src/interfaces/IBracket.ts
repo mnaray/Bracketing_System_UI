@@ -1,3 +1,5 @@
+/* eslint-disable semi */
+
 import { FieldValue } from "firebase/firestore";
 import IRound from "./IRound";
 
