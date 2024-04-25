@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../config/firebaseConfig";
 import getAllBracketsSnapshot from "../database/getAllBracketsSnapshot";
 import { DocumentData } from "firebase/firestore";
+import CreateBracketModal from "../components/CreateBracketModal";
 
 function Home() {
   const [brackets, setBrackets] = useState<DocumentData[]>([]);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -20,6 +21,11 @@ function Home() {
     }
     fetchData();
   }, []);
+
+  const handleCreateBracket = (numParticipants: number) => {
+    console.log("Neues Bracket erstellen mit", numParticipants, "Teilnehmern");
+  };
+
   return (
     <div className="flex flex-col items-center justify-start bg-slate-500 w-screen h-screen">
       <div className="flex items-center flex-col mt-20">
@@ -31,6 +37,12 @@ function Home() {
           onClick={() => auth.signOut()}
         >
           Sign out
+        </button>
+        <button
+          className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => setIsModalOpen(true)} // Öffne das Modalfenster, wenn der "Create Bracket" Button geklickt wird
+        >
+          Create Bracket
         </button>
         <div className="mt-16">
           {brackets.map((bracket, index) => (
@@ -48,6 +60,12 @@ function Home() {
           ))}
         </div>
       </div>
+      {/* Modalfenster für das Erstellen eines neuen Brackets */}
+      <CreateBracketModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreateBracket={handleCreateBracket}
+      />
     </div>
   );
 }
