@@ -1,3 +1,5 @@
+/* eslint-disable semi */
+
 import IMatch from "./IMatch";
 
 export default interface IRound {
