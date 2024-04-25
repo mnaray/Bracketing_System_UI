@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
-interface AuthWrapperProps {
+interface IAuthWrapper {
   children: ReactNode;
 }
 
-function AuthWrapper({ children }: AuthWrapperProps) {
+function AuthWrapper({ children }: IAuthWrapper) {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
