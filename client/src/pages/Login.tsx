@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <div
-      className="bg-black w-screen h-screen flex justify-center items-center"
+      className="bg-slate-500 w-screen h-screen flex justify-center items-center"
       id="firebaseui-auth-container"
     >
       <h1 className="text-white relative left-2/4 bottom-36">Hello User.</h1>
