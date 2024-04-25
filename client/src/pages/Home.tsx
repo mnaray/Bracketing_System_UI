@@ -32,6 +32,21 @@ function Home() {
         >
           Sign out
         </button>
+        <div className="mt-16">
+          {brackets.map((bracket, index) => (
+            <div key={index}>
+              <div className="rounded-lg overflow-hidden shadow-lg flex flex-col justify-center bg-white my-4 mx-2 p-8 w-64">
+                <p className="text-lg font-semibold mb-2">{bracket.title}</p>
+                <button
+                  className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => console.log("Placeholder")}
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
