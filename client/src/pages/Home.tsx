@@ -3,6 +3,8 @@ import { auth } from "../config/firebaseConfig";
 import getAllBracketsSnapshot from "../database/getAllBracketsSnapshot";
 import { DocumentData } from "firebase/firestore";
 import CreateBracketModal from "../components/CreateBracketModal";
+import GenerateBracket from "../services/GenerateBracket";
+import insertBracket from "../database/insertBracket";
 
 function Home() {
   const [brackets, setBrackets] = useState<DocumentData[]>([]);
@@ -23,13 +25,14 @@ function Home() {
   }, []);
 
   const handleCreateBracket = (title: string, numParticipants: number) => {
-    console.log(
-      "Neues Bracket erstellen mit Titel:",
-      title,
-      "und",
-      numParticipants,
-      "Teilnehmern"
-    );
+    if (!auth.currentUser) {
+      throw Error("Not logged in!");
+    }
+
+    const uid = auth.currentUser.uid;
+    const newBracket = GenerateBracket(uid, title, numParticipants);
+
+    insertBracket(newBracket);
   };
 
   return (
