@@ -4,8 +4,9 @@ import IBracketTreeProps from "../interfaces/IBracketTreeProps";
 function BracketTree(props: IBracketTreeProps) {
   const bracket = props.bracket;
 
-  bracket.rounds.sort((a, b) => a.roundNumber - b.roundNumber);
+  bracket.rounds = bracket.rounds.sort((a, b) => a.roundNumber - b.roundNumber);
   const rounds = bracket.rounds.map((round) => {
+    round.matches = round.matches.sort((a, b) => a.matchId - b.matchId);
     const matches = round.matches.map((match) => {
       return (
         <li key={match.matchId} className="border border-black">
