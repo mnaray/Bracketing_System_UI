@@ -10,5 +10,5 @@ export default interface IMatch {
   winner: ICompetitor | null;
   started: boolean;
   startedAt: FieldValue | null;
-  nextMatch: string | null;
+  nextMatch: number | null;
 }
