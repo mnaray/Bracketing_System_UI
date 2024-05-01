@@ -10,10 +10,10 @@ export default async function getAllBracketsSnapshot() {
     );
   }
 
-  const uname = user.uid;
+  const uid = user.uid;
   const q = query(
     collection(db, "brackets"),
-    where("ownerName", "==", uname),
+    where("uid", "==", uid),
     orderBy("editedAt", "desc")
   );
 
