@@ -27,7 +27,17 @@ function BracketTree(props: IBracketTreeProps) {
   });
 
   // add victor round
-  rounds.push(<li>Winner NAME</li>);
+  rounds.push(
+    <ul className="flex flex-col justify-center ml-12">
+      <li className="flex flex-col justify-center border-2 border-blue-600 w-40 h-20 text-center">
+        <p className="text-lg">Winner 👑</p>
+        <p className="flex-grow-0 text-xl">
+          {bracket.rounds[bracket.rounds.length - 1].matches[0].winner?.name ||
+            "?"}
+        </p>
+      </li>
+    </ul>
+  );
 
   return <ul className="flex flex-row justify-center h-max">{rounds}</ul>;
 }
