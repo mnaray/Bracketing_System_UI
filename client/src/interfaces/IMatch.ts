@@ -5,10 +5,10 @@ import ICompetitor from "./ICompetitor";
 
 export default interface IMatch {
   matchId: number;
-  competitor1: ICompetitor | undefined;
-  competitor2: ICompetitor | undefined;
-  winner: ICompetitor | undefined;
+  competitor1: ICompetitor | null;
+  competitor2: ICompetitor | null;
+  winner: ICompetitor | null;
   started: boolean;
-  startedAt: FieldValue | undefined;
-  nextMatch: string | undefined;
+  startedAt: FieldValue | null;
+  nextMatch: string | null;
 }
