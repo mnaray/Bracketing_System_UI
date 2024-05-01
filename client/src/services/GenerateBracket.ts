@@ -15,7 +15,7 @@ export default function GenerateBracket(
     editedAt: serverTimestamp(),
     uid: uid,
     started: false,
-    startedAt: undefined,
+    startedAt: null,
     rounds: GenerateRounds(competitorAmount),
     id: undefined,
   };
@@ -29,7 +29,7 @@ function GenerateRounds(competitorAmount: number): IRound[] {
   for (let i = 0; i < competitorAmount; i++) {
     competitors.push({
       name: `Competitor ${i + 1}`,
-      previousMatchId: undefined,
+      previousMatchId: null,
     });
   }
 
@@ -45,13 +45,13 @@ function GenerateRounds(competitorAmount: number): IRound[] {
 
     for (let i = 0; i < competitors.length; i += 2) {
       const match: IMatch = {
-        competitor1: roundCount === 1 ? competitors[i] : undefined,
-        competitor2: roundCount === 1 ? competitors[i + 1] : undefined,
+        competitor1: roundCount === 1 ? competitors[i] : null,
+        competitor2: roundCount === 1 ? competitors[i + 1] : null,
         matchId: matchCount,
         started: false,
-        startedAt: undefined,
-        winner: undefined,
-        nextMatch: undefined,
+        startedAt: null,
+        winner: null,
+        nextMatch: null,
       };
 
       matchCount++;
@@ -71,5 +71,30 @@ function GenerateRounds(competitorAmount: number): IRound[] {
     }
   }
 
+  LinkMatches(rounds);
+
   return rounds;
+}
+
+function LinkMatches(rounds: IRound[]) {
+  for (let i = 0; i < rounds.length; i++) {
+    // after second-to-last round
+    if (i === rounds.length - 1) {
+      break;
+    }
+
+    let linkCounter = 0;
+    let matchToBeLinked = 0;
+    rounds[i].matches.forEach((match) => {
+      const nextMatch = rounds[i + 1].matches[matchToBeLinked];
+      match.nextMatch = nextMatch.matchId;
+      linkCounter++;
+
+      // check if next match has been linked twice
+      if (linkCounter === 2) {
+        linkCounter = 0;
+        matchToBeLinked++;
+      }
+    });
+  }
 }
