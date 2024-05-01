@@ -3,7 +3,7 @@ import React, { useState } from "react";
 interface CreateBracketModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreateBracket: (numParticipants: number) => void;
+  onCreateBracket: (title: string, numParticipants: number) => void;
 }
 
 const CreateBracketModal: React.FC<CreateBracketModalProps> = ({
@@ -11,13 +11,14 @@ const CreateBracketModal: React.FC<CreateBracketModalProps> = ({
   onClose,
   onCreateBracket,
 }) => {
+  const [title, setTitle] = useState("");
   const [numParticipants, setNumParticipants] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsedNumParticipants = parseInt(numParticipants);
     if (!isNaN(parsedNumParticipants)) {
-      onCreateBracket(parsedNumParticipants);
+      onCreateBracket(title, parsedNumParticipants);
       onClose();
     } else {
       alert(
@@ -37,6 +38,22 @@ const CreateBracketModal: React.FC<CreateBracketModalProps> = ({
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              className="mt-1 border-2 border-black focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label
               htmlFor="numParticipants"
               className="block text-sm font-medium text-gray-700"
             >
@@ -45,7 +62,7 @@ const CreateBracketModal: React.FC<CreateBracketModalProps> = ({
             <input
               type="number"
               id="numParticipants"
-              className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border-2 border-black"
+              className="mt-1 border-2 border-black focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               value={numParticipants}
               onChange={(e) => setNumParticipants(e.target.value)}
               required

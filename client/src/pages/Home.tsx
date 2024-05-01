@@ -22,8 +22,14 @@ function Home() {
     fetchData();
   }, []);
 
-  const handleCreateBracket = (numParticipants: number) => {
-    console.log("Neues Bracket erstellen mit", numParticipants, "Teilnehmern");
+  const handleCreateBracket = (title: string, numParticipants: number) => {
+    console.log(
+      "Neues Bracket erstellen mit Titel:",
+      title,
+      "und",
+      numParticipants,
+      "Teilnehmern"
+    );
   };
 
   return (

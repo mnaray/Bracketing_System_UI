@@ -7,7 +7,7 @@ export default async function insertBracket(bracket: IBracket) {
     title: bracket.title,
     createdAt: bracket.createdAt,
     editedAt: bracket.editedAt,
-    ownerName: bracket.ownerName,
+    uid: bracket.uid,
     started: bracket.started,
     startedAt: bracket.startedAt,
     rounds: bracket.rounds,
