@@ -15,7 +15,11 @@ function App() {
         <Route path="/home" element={<AuthWrapper>{<Home />}</AuthWrapper>} />
         <Route
           path="/detailed"
-          element={<AuthWrapper>{<Detailed />}</AuthWrapper>}
+          element={
+            <AuthWrapper>
+              {<Detailed bracketId="3eIL7Ezz1pGUgAdNNJfy" />}
+            </AuthWrapper>
+          }
         />
       </Routes>
     </BrowserRouter>
