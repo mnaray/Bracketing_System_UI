@@ -8,9 +8,9 @@ function BracketTree(props: IBracketTreeProps) {
   const rounds = bracket.rounds.map((round) => {
     const matches = round.matches.map((match) => {
       return (
-        <li key={match.id} className="border border-black">
-          <p>{match.competitor1.name}</p>
-          <p>{match.competitor2.name}</p>
+        <li key={match.matchId} className="border border-black">
+          <p>{match.competitor1?.name || "?"}</p>
+          <p>{match.competitor2?.name || "?"}</p>
         </li>
       );
     });
