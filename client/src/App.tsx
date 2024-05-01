@@ -17,7 +17,7 @@ function App() {
           path="/detailed"
           element={
             <AuthWrapper>
-              {<Detailed bracketId="3eIL7Ezz1pGUgAdNNJfy" />}
+              {<Detailed bracketId="xYPqjed7ybM2LPi2fyCQ" />}
             </AuthWrapper>
           }
         />
