@@ -32,7 +32,12 @@ async function getData(
   bracketId: string
 ) {
   const snapshot = await getBracketSnapshotById(bracketId);
-  bracketSetter(snapshot.data() as IBracket);
+  const bracketData: IBracket = {
+    id: snapshot.id,
+    ...snapshot.data(),
+  } as IBracket;
+
+  bracketSetter(bracketData);
 }
 
 export default Detailed;
