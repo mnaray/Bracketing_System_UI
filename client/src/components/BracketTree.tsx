@@ -1,5 +1,6 @@
 import React from "react";
 import IBracketTreeProps from "../interfaces/IBracketTreeProps";
+import CompetitorField from "./CompetitorField";
 
 function BracketTree(props: IBracketTreeProps) {
   const bracket = props.bracket;
@@ -13,8 +14,18 @@ function BracketTree(props: IBracketTreeProps) {
           key={match.matchId}
           className="border-2 border-black my-4 mx-12 p-2 divide-y divide-blue-400 w-40 text-center text-lg"
         >
-          <p>{match.competitor1?.name || "?"}</p>
-          <p>{match.competitor2?.name || "?"}</p>
+          <CompetitorField
+            round={round.roundNumber}
+            bracket={bracket}
+            match={match}
+            firstCompetitor={true}
+          />
+          <CompetitorField
+            round={round.roundNumber}
+            bracket={bracket}
+            match={match}
+            firstCompetitor={false}
+          />
         </li>
       );
     });
