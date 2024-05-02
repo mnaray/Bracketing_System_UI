@@ -23,6 +23,16 @@ function CompetitorField(props: ICompetitorFieldProps) {
     bracket.rounds[props.round - 1].matches[currentMatchIndex].winner =
       competitor;
 
+    // check if it's the final round and define winner if it is
+    const finalRoundIndex = bracket.rounds.length - 1;
+    const finalMatch = bracket.rounds[finalRoundIndex].matches[0];
+
+    if (props.match.matchId === finalMatch.matchId) {
+      await updateBracket(bracket);
+      window.location.reload();
+      return;
+    }
+
     // move winner of current match to next match
     const nextMatch = bracket.rounds[props.round].matches.find(
       (m) => m.matchId === props.match.nextMatch
