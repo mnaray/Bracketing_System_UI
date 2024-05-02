@@ -1,13 +1,14 @@
 import React from "react";
 import ICompetitorFieldProps from "../interfaces/ICompetitorFieldProps";
 import IMatch from "../interfaces/IMatch";
+import updateBracket from "../database/updateBracket";
 
 function CompetitorField(props: ICompetitorFieldProps) {
   const competitor = props.firstCompetitor
     ? props.match.competitor1
     : props.match.competitor2;
 
-  function advanceCompetitor() {
+  async function advanceCompetitor() {
     if (!props.match.competitor1 || !props.match.competitor2) {
       return;
     }
@@ -15,21 +16,37 @@ function CompetitorField(props: ICompetitorFieldProps) {
     let bracket = props.bracket;
 
     // set winner of current match
-    bracket.rounds[props.round].matches[
-      bracket.rounds[props.round].matches.indexOf(props.match)
-    ].winner = competitor;
+    const currentMatchIndex = bracket.rounds[props.round - 1].matches.indexOf(
+      props.match
+    );
+
+    bracket.rounds[props.round - 1].matches[currentMatchIndex].winner =
+      competitor;
 
     // move winner of current match to next match
-    const nextMatch = bracket.rounds[props.round + 1].matches.find(
+    const nextMatch = bracket.rounds[props.round].matches.find(
       (m) => m.matchId === props.match.nextMatch
     );
 
-    bracket.rounds[props.round + 1].matches[
-      bracket.rounds[props.round + 1].matches.indexOf(nextMatch as IMatch)
-    ].competitor1 = {
-      name: competitor!.name,
-      previousMatchId: props.match.matchId,
-    };
+    const nextMatchIndex = bracket.rounds[props.round].matches.indexOf(
+      nextMatch as IMatch
+    );
+
+    // decide which competitor to set in next match
+    if (props.match.matchId % 2 === 0) {
+      bracket.rounds[props.round].matches[nextMatchIndex].competitor2 = {
+        name: competitor!.name,
+        previousMatchId: props.match.matchId,
+      };
+    } else {
+      bracket.rounds[props.round].matches[nextMatchIndex].competitor1 = {
+        name: competitor!.name,
+        previousMatchId: props.match.matchId,
+      };
+    }
+
+    await updateBracket(bracket);
+    window.location.reload();
   }
 
   return (
