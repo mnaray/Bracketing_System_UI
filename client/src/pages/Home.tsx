@@ -6,7 +6,7 @@ import GenerateBracket from "../services/GenerateBracket";
 import insertBracket from "../database/insertBracket";
 import deleteBracket from "../database/deleteBracket";
 import IBracket from "../interfaces/IBracket";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [brackets, setBrackets] = useState<IBracket[]>([]);
