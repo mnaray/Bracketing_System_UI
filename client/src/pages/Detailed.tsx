@@ -2,7 +2,7 @@ import React, { Dispatch, useEffect, useState } from "react";
 import getBracketSnapshotById from "../database/getBracketSnapshotById";
 import IBracket from "../interfaces/IBracket";
 import BracketTree from "../components/BracketTree";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Detailed({ route, navigate }: any) {
   const [bracket, setBracket] = useState<null | IBracket>(null);
@@ -19,7 +19,16 @@ function Detailed({ route, navigate }: any) {
 
   return (
     <>
-      <h1 className="text-4xl">{bracket.title}</h1>
+      <div className="flex flex-row justify-between">
+        <h1 className="text-4xl">{bracket.title}</h1>
+        <Link
+          to={"/home"}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Return to homepage
+        </Link>
+      </div>
+
       <BracketTree bracket={bracket} />
     </>
   );

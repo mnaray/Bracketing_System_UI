@@ -53,7 +53,7 @@ function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-start bg-slate-500 w-screen h-screen">
+    <div className="flex flex-col items-center justify-start w-screen h-screen">
       <div className="flex items-center flex-col mt-20">
         <h1 className="text-xl m-2">
           Welcome, {auth.currentUser?.displayName}
