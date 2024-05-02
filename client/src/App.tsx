@@ -14,12 +14,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<AuthWrapper>{<Home />}</AuthWrapper>} />
         <Route
-          path="/detailed"
-          element={
-            <AuthWrapper>
-              {<Detailed bracketId="xYPqjed7ybM2LPi2fyCQ" />}
-            </AuthWrapper>
-          }
+          path="/details"
+          element={<AuthWrapper>{<Detailed />}</AuthWrapper>}
         />
       </Routes>
     </BrowserRouter>
