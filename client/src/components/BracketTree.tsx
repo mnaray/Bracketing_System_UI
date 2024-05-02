@@ -39,8 +39,11 @@ function BracketTree(props: IBracketTreeProps) {
 
   // add victor round
   rounds.push(
-    <ul className="flex flex-col justify-center ml-12">
-      <li className="flex flex-col justify-center border-2 border-blue-600 w-40 h-20 text-center">
+    <ul className="flex flex-col justify-center ml-12" key={"winner-list"}>
+      <li
+        className="flex flex-col justify-center border-2 border-blue-600 w-40 h-20 text-center"
+        key={"winner"}
+      >
         <p className="text-lg">Winner 👑</p>
         <p className="flex-grow-0 text-xl">
           {bracket.rounds[bracket.rounds.length - 1].matches[0].winner?.name ||
