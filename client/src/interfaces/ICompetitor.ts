@@ -2,5 +2,5 @@
 
 export default interface ICompetitor {
   name: string;
-  previousMatchId: string | null;
+  previousMatchId: number | null;
 }

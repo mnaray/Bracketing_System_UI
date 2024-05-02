@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AuthWrapper from "./components/AuthWrapper";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Detailed from "./pages/Detailed";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
         <Route index path="/" element={<Navigate to="/home" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<AuthWrapper>{<Home />}</AuthWrapper>} />
+        <Route
+          path="/details"
+          element={<AuthWrapper>{<Detailed />}</AuthWrapper>}
+        />
       </Routes>
     </BrowserRouter>
   );
