@@ -23,7 +23,6 @@ function Home() {
               ...doc.data(),
             } as IBracket;
           });
-          console.log(bracketsData);
           setBrackets(bracketsData);
         }
       } catch (error) {
