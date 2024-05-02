@@ -2,7 +2,6 @@ import React, { Dispatch, useEffect, useState } from "react";
 import getBracketSnapshotById from "../database/getBracketSnapshotById";
 import IBracket from "../interfaces/IBracket";
 import BracketTree from "../components/BracketTree";
-import SaveButton from "../components/SaveButton";
 import { useLocation } from "react-router-dom";
 
 function Detailed({ route, navigate }: any) {
@@ -21,7 +20,6 @@ function Detailed({ route, navigate }: any) {
   return (
     <>
       <h1 className="text-4xl">{bracket.title}</h1>
-      <SaveButton />
       <BracketTree bracket={bracket} />
     </>
   );
